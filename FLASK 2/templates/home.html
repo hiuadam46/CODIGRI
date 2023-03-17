@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODIGRI</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <style>
+        body {
+      background-color: #F7F7F7;
+    }
+    
+    .container {
+      margin-top: 100px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      color: #282828;
+    }
+    
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border-radius: 30px;
+      border: none;
+      background-color: #37AFFF;
+      color: #FFFFFF;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    button:hover {
+      background-color: #008CBA;
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <!-- <div class="container">
+        <div class="card">
+            <div class="card-header" style="text-align: 1;">
+                <h1>Room List</h1>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a id="nav-frontend" class="nav-link active" href="#" style="color: inherit;" onclick="changePage(this)">Frontend</a>
+                </li>
+              </ul>
+            </div>
+            <div id="card-frontend" class="card-body">
+              <h5 class="card-title">List</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/registration" style="color: inherit;">Registration <i class="fa fa-newspaper"></i></a></li>
+              </ul>
+            </div>
+          </div>
+    </div>
+</body>
+<script>
+    function changePage(link){
+        $("#nav-endpoint").removeClass("active");
+        $("#"+link.id).addClass("active");
+
+        $("#card-rooms").hide();
+        $("#card-endpoint").hide();
+        $("#"+(link.id).replace("nav", "card")).show();
+        console.log((link.id).replace("nav", "card"))
+    }
+</script>
+</html>

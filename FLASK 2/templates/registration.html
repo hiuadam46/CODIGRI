@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODIGRI</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <style>
+        body {
+      background-color: #F7F7F7;
+    }
+    
+    .container {
+      margin-top: 100px;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      color: #282828;
+    }
+    
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border-radius: 30px;
+      border: none;
+      background-color: #37AFFF;
+      color: #FFFFFF;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    button:hover {
+      background-color: #008CBA;
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <h5>Registration</h5>
+          </div>
+          <div class="card-body" id="card-1">
+            <div class="container">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" name="" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" name="" id="password">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="float-right"  href="#" onclick="changePage(2)" style="color: inherit;"><i class="fa fa-arrow-right"></i></a>
+          </div>
+
+          <div class="card-body" id="card-2">
+            <div class="container">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="">First Name</label>
+                    <input type="text" class="form-control" name="" id="firstname">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input type="text" class="form-control" name="" id="lastname">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Telephone</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">+</div>
+                      </div>
+                      <input type="text" class="form-control" id="telephone">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Address</label>
+                    <textarea class="form-control"  rows="3" style="resize: none;" id="address"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Province</label>
+                    <input type="text" class="form-control" name="" id="province">
+                  </div>
+                  <div class="form-group">
+                    <label for="">City</label>
+                    <input type="text" class="form-control" name="" id="city">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Country</label>
+                    <input type="text" class="form-control" name="" id="country">
+                  </div>
+                  <div class="form-group">
+                    <label for="profileimage">Profile Image</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="profileimage" accept="image/*" data-browse="Browse">
+                      <label class="custom-file-label" for="profileimage">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="float-left"  href="#" onclick="changePage(1)" style="color: inherit;"><i class="fa fa-arrow-left"></i></a><a class="float-right" href="#" onclick="register()" style="color: inherit;">Register<i class="fa fa-paper-plane"></i></a>
+          </div>
+
+          
+
+        </div>
+    </div>
+</body>
+<script>
+    // Initialize page
+    $("#card-2").hide();
+    function changePage(page){
+      $("#card-1").hide();
+      $("#card-2").hide();
+      // Show current page
+      $("#card-"+page).fadeIn("slow");
+    }
+    function validateThis(){
+
+    }
+    $('.custom-file-input').on('change', function() {
+      var fileName = $(this).val().split('\\').pop();
+      $(this).next('.custom-file-label').html(fileName);
+    });
+
+    function register(){
+      var coreapi = window.coreapi  // Loaded by `coreapi.js`
+      var schema = window.schema    // Loaded by `schema.js`
+
+      // Initialize a client
+      var client = new coreapi.Client()
+
+      // Set JWT token in the header
+      var headers = {
+        "Authorization": "Bearer TSTKRI"
+      }
+
+      // Interact with the API endpoint
+      var action = ["register", "create"]
+      var params = {
+          username: $("#email").val(),
+          password: $("#password").val(),
+          first_name: $("#firstname").val(),
+          last_name: $("#lastname").val(),
+          telephone: $("#telephone").val(),
+          profile_image: "profileimage",
+          address: $("#address").val(),
+          city: $("#city").val(),
+          province: $("#province").val(),
+          country: $("#country").val(),
+      }
+      client.action(schema, action, params, null, headers).then(function(result) {
+          console.log(result)
+      })
+    }
+</script>
+</html>
